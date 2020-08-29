@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>First Innings Score Predictor</title>
+        <link rel="shortcut icon" href="#">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    </head>
+
+    <body>
+      <nav class="navbar navbar-dark bg-dark">
+          <div class="container justify-content-center">
+              <a class="navbar-brand" href="#">IPL First Innings Score Predictor Demo</a>
+          </div>
+      </nav>
+
+      <div class="prediction-area">
+          <div class='div2'>
+              <form action="{{ url_for('predict') }}" method="POST">
+                <select class="form-input align-center" name="venue">
+                    <option value="none">--- Select a Venue ---</option>
+                    <option value="Barabati Stadium">Barabati Stadium</option>
+                    <option value="Brabourne Stadium">Brabourne Stadium</option>
+                    <option value="Buffalo Park">Buffalo Park</option>
+                    <option value="De Beers Diamond Oval">De Beers Diamond Oval</option>
+                    <option value="Dr DY Patil Sports Academy">Dr DY Patil Sports Academy</option>
+                    <option value="Dr. Y.S. Rajasekhara Reddy ACA-VDCA Cricket Stadium">Dr. Y.S. Rajasekhara Reddy ACA-VDCA Cricket Stadium</option>
+                    <option value="Dubai International Cricket Stadium">Dubai International Cricket Stadium</option>
+                    <option value="Eden Gardens">Eden Gardens</option>
+                    <option value="Feroz Shah Kotla">Feroz Shah Kotla</option>
+                    <option value="Himachal Pradesh Cricket Association Stadium">Himachal Pradesh Cricket Association Stadium</option>
+                    <option value="Holkar Cricket Stadium">Holkar Cricket Stadium</option>
+                    <option value="JSCA International Stadium Complex">JSCA International Stadium Complex</option>
+                    <option value="Kingsmead">Kingsmead</option>
+                    <option value="M Chinnaswamy Stadium">M Chinnaswamy Stadium</option>
+                    <option value="MA Chidambaram Stadium, Chepauk">MA Chidambaram Stadium, Chepauk</option>
+                    <option value="Maharashtra Cricket Association Stadium">Maharashtra Cricket Association Stadium</option>
+                    <option value="New Wanderers Stadium">New Wanderers Stadium</option>
+                    <option value="Newlands">Newlands</option>
+                    <option value="OUTsurance Oval">OUTsurance Oval</option>
+                    <option value="Punjab Cricket Association IS Bindra Stadium, Mohali">Punjab Cricket Association IS Bindra Stadium, Mohali</option>
+                    <option value="Punjab Cricket Association Stadium, Mohali">Punjab Cricket Association Stadium, Mohali</option>
+                    <option value="Rajiv Gandhi International Stadium, Uppal">Rajiv Gandhi International Stadium, Uppal</option>
+                    <option value="Sardar Patel Stadium, Motera">Sardar Patel Stadium, Motera</option>
+                    <option value="Sawai Mansingh Stadium">Sawai Mansingh Stadium</option>
+                    <option value="Shaheed Veer Narayan Singh International Stadium">Shaheed Veer Narayan Singh International Stadium</option>
+                    <option value="Sharjah Cricket Stadium">Sharjah Cricket Stadium</option>
+                    <option value="Sheikh Zayed Stadium">Sheikh Zayed Stadium</option>
+                    <option value="St George's Park">St George's Park</option>
+                    <option value="Subrata Roy Sahara Stadium">Subrata Roy Sahara Stadium</option>
+                    <option value="SuperSport Park">SuperSport Park</option>
+                    <option value="Wankhede Stadium">Wankhede Stadium</option>
+                </select><br>
+                  <select class="form-input align-center" name="batting-team">
+                      <option value="none">--- Select a Batting team ---</option>
+                      <option value="Mumbai Indians">Mumbai Indians</option>
+                      <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                      <option value="Chennai Super Kings">Chennai Super Kings</option>
+                      <option value="Rajasthan Royals">Rajasthan Royals</option>
+                      <option value="Kings XI Punjab">Kings XI Punjab</option>
+                      <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                      <option value="Delhi Daredevils">Delhi Daredevils</option>
+                      <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                  </select><br>
+                  <select class="form-input align-center" name="bowling-team">
+                      <option value="none">--- Select a Bowling team ---</option>
+                      <option value="Mumbai Indians">Mumbai Indians</option>
+                      <option value="Kolkata Knight Riders">Kolkata Knight Riders</option>
+                      <option value="Chennai Super Kings">Chennai Super Kings</option>
+                      <option value="Rajasthan Royals">Rajasthan Royals</option>
+                      <option value="Kings XI Punjab">Kings XI Punjab</option>
+                      <option value="Royal Challengers Bangalore">Royal Challengers Bangalore</option>
+                      <option value="Delhi Daredevils">Delhi Daredevils</option>
+                      <option value="Sunrisers Hyderabad">Sunrisers Hyderabad</option>
+                  </select><br>
+                  <input class="form-input" type="text" name="overs" placeholder="Overs (>= 5.0) eg. 7.2"><br>
+                  <input class="form-input" type="text" name="runs" placeholder="Runs eg. 64"><br>
+                  <input class="form-input" type="text" name="wickets" placeholder="Wickets eg. 4"><br>
+                  <input class="form-input" type="text" name="runs_in_prev_5" placeholder="Runs scored in previous 5 Overs eg. 42"><br>
+                  <input class="form-input" type="text" name="wickets_in_prev_5" placeholder="Wickets taken in previous 5 Overs eg. 3"><br>
+
+  	              <input type="submit" class="myButton btn btn-success" value="Predict Score">
+            	</form>
+          </div>
+        </div>
+
+        <footer class="footer mt-auto py-3">
+           <div class="container">
+             <span class="text-muted">Made By: Arpit Verma on 29th August 2020.</span>
+           </div>
+         </footer>
+
+    </body>
+</html>

@@ -1,0 +1,48 @@
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
+.footer {
+  background-color: #f5f5f5;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.prediction-area{
+	position: relative;
+	display: flex;
+	justify-content: space-evenly;
+	padding: 20px 40px;
+}
+
+.form-input{
+	background-color: #E9E9E9;
+	width: 370px;
+	height: 30px;
+	border-radius: 3px;
+	border: 0;
+	text-align: center;
+	-webkit-box-shadow: inset 7px 3px 16px -10px rgba(0,0,0,0.75);
+	-moz-box-shadow: inset 7px 3px 16px -10px rgba(0,0,0,0.75);
+	box-shadow: inset 7px 3px 16px -10px rgba(0,0,0,0.75);
+	margin-bottom: 15px;
+}
+
+.align-center{
+	padding: 0 30px;
+}
+
+.results{
+	display: inline-block;
+	width: auto;
+	height: 429px;
+	text-align: center;
+}
+
+.myButton {
+  margin-left: 7vw;
+}
